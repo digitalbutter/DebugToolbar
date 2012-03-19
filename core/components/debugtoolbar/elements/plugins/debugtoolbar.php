@@ -17,6 +17,7 @@ if ($modx->event->name == 'OnHandleRequest'){
 	$modx->regClientScript("<script>window.jQuery || " . $jquery . "</script>");
 	$modx->regClientScript(MODX_ASSETS_URL . 'components/debugtoolbar/js/debug_toolbar.js');
 	$modx->regClientCSS(MODX_ASSETS_URL . 'components/debugtoolbar/css/debug_toolbar.css');
+	$modx->regClientCSS(MODX_ASSETS_URL . 'components/debugtoolbar/css/highlight.css');
 	$target = array(
 	    'target' => 'FILE',
 	    'options' => array(

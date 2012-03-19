@@ -1,0 +1,81 @@
+#modDT .sql-hl-default {
+    color: Black;
+}
+
+#modDT .sql-hl-code {
+    color: Gray;
+}
+
+#modDT .sql-hl-brackets {
+    color: Olive;
+}
+
+#modDT .sql-hl-comment {
+    color: #808080;
+    font-style: italic;
+}
+
+#modDT .sql-hl-quotes {
+    color: red;
+}
+
+#modDT .sql-hl-string {
+    color: Red;
+}
+
+#modDT .sql-hl-identifier {
+    color: Blue;
+}
+
+#modDT .sql-hl-builtin {
+    color: Teal;
+}
+
+#modDT .sql-hl-reserved {
+    color: Green;
+}
+
+#modDT .sql-hl-inlinedoc {
+    color: Blue;
+}
+
+#modDT .sql-hl-var {
+    color: #000020;
+}
+
+#modDT .sql-hl-url {
+    color: Blue;
+}
+
+#modDT .sql-hl-special {
+    color: Navy;
+}
+
+#modDT .sql-hl-number {
+    color: Maroon;
+}
+
+#modDT .sql-hl-inlinetags {
+    color: Blue;
+}
+
+#modDT .sql-hl-main {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: normal;
+}
+
+#modDT .sql-hl-gutter {
+    background-color: #999999;
+    color: White
+}
+
+#modDT .sql-hl-table {
+    font-family: courier;
+    font-size: 12px;
+    border: solid 1px #505050;
+}
+
+#modDT .sql-hl-main pre {
+    border: 0;
+    background: transparent;
+}
