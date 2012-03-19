@@ -1,0 +1,17 @@
+<!-- slow query class = modDTRowWarning -->
+<tr class="modDTHoverable [[+idx:mod:is=`0`:then=`modDTEven`:else=`modDTOdd`]]" id="sqlMain_[[+idx]]">
+	<td class="query">
+		<div class="modDTSqlWrap">
+			<div class="modDTSql">[[+sql]]</div>
+		</div>
+	</td>
+<!-- 	<td class="timeline">
+		<div class="modDTTimeline"><div class="modDTLineChart{% if query.is_slow %} modDTLineChartWarning{% endif %}" style="left:{{ query.start_offset|dotted_number }}%;"><strong style="width:{{ query.width_ratio_relative|dotted_number }}%;">{{ query.width_ratio }}%</strong></div></div>
+	</td> -->
+	<td class="time">
+		[[+queryTime]]
+	</td>
+	<td class="count">
+		[[+queryCount]]
+	</td>
+</tr>

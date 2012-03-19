@@ -1,0 +1,21 @@
+<tr class="modDTHoverable [[+idx:mod:is=`0`:then=`modDTEven`:else=`modDTOdd`]]" id="sqlMain_[[+idx]]">
+	<td class="toggle">
+		<a class="moddtToggleSwitch" [[+content:is=``:then=`style="display:none;"`:else=``]] data-toggle-id="[[+idx]]" data-toggle-open="+" data-toggle-close="-" href="javascript:void(0)">+</a>
+	</td>
+	<td class="parser" style="width:100%">
+		<div class="modDTParserWrap">
+			<div class="modDParser">[[+id]]</div>
+		</div>
+	</td>
+	<td class="count">
+		[[+count]]
+	</td>
+</tr>
+<tr class="moddtUnselected modDTHoverable [[+idx:mod:is=`0`:then=`modDTEven`:else=`modDTOdd`]] moddtToggleDetails_[[+idx]]" id="sqlDetails_[[+idx]]">
+	<td></td>
+	<td colspan="2">
+		<div class="modDTSQLDetailsDiv">
+				<pre class="stack">[[+content]]</pre>
+		</div>
+	</td>
+</tr>
