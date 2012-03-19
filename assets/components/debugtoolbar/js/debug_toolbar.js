@@ -205,4 +205,4 @@ window.moddt = (function(window, document, jQuery) {
 		moddt.init();
 	});
 	return moddt;
-}(window, document, jQuery.noConflict(true)));
+}(window, document, jQuery.noConflict()));

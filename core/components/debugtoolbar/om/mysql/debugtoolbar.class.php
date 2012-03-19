@@ -68,13 +68,6 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
               $timing_array['cpu_system'] = $cpu_data['ru_stime.tv_sec'] + $cpu_data['ru_stime.tv_usec'] / 1000000;
               }
 
-            $ti = 0;
-            foreach ($timing_array as $key => $value) {
-                $timing .= $modx->getChunk($kv_tpl, array('idx' => $ti, 'key' => $key, 'value' => $value));
-                $ti++;
-            }
-            $panels['timing'] = $modx->getChunk($timing_tpl, array('timing' => $timing));
-
             $headers = '';
             $hi = 0;
             foreach (getallheaders() as $key => $value) {
@@ -110,6 +103,14 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
                 'uQueries' => count(self::$queryCount)
             );
             $panels['queries'] = $modx->getChunk($queries_tpl, $qProperties);
+
+            $timing_array['queries'] = $totalTime;
+            $ti = 0;
+            foreach ($timing_array as $key => $value) {
+                $timing .= $modx->getChunk($kv_tpl, array('idx' => $ti, 'key' => $key, 'value' => $value));
+                $ti++;
+            }
+            $panels['timing'] = $modx->getChunk($timing_tpl, array('timing' => $timing));
 
             $parser = '';
             $pi = 0;
