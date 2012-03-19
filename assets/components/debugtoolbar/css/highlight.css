@@ -79,3 +79,61 @@
     border: 0;
     background: transparent;
 }
+
+#modDT .html-hl-default {
+    color: Black;
+}
+#modDT .html-hl-code {
+    color: Gray;
+}
+#modDT .html-hl-brackets {
+    color: Olive;
+}
+#modDT .html-hl-comment {
+    color: Orange;
+}
+#modDT .html-hl-quotes {
+    color: Darkred;
+}
+#modDT .html-hl-string {
+    color: Red;
+}
+#modDT .html-hl-identifier {
+    color: Blue;
+}
+#modDT .html-hl-builtin {
+    color: Teal;
+}
+#modDT .html-hl-reserved {
+    color: Green;
+}
+#modDT .html-hl-inlinedoc {
+    color: Blue;
+}
+#modDT .html-hl-var {
+    color: Darkblue;
+}
+#modDT .html-hl-url {
+    color: Blue;
+}
+#modDT .html-hl-special {
+    color: Navy;
+}
+#modDT .html-hl-number {
+    color: Maroon;
+}
+#modDT .html-hl-inlinetags {
+    color: Blue;
+}
+#modDT .html-hl-main {
+    background-color: White;
+}
+#modDT .html-hl-gutter {
+    background-color: #999999;
+    color: White
+}
+#modDT .html-hl-table {
+    font-family: courier;
+    font-size: 12px;
+    border: solid 1px Lightgrey;
+}

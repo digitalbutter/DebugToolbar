@@ -40,5 +40,7 @@ if ($modx->event->name == 'OnParseDocument'){
 }
 
 if ($modx->event->name == 'OnWebPagePrerender'){
+	DebugToolbar::$disableLogging = true;
+    $modx->setOption('dbt.show_debug_toolbar', 0);
 	$modx->resource->_output = str_replace('</body>', DebugToolbar::printLog() . '</body>', $modx->resource->_output);
 }

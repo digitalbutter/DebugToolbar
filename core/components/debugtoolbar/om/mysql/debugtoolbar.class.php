@@ -8,6 +8,7 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
         public static $queryCount = array();
         public static $petCount = array();
         public static $base_path = '';
+        public static $disableLogging = false;
 
         public function __construct($dsn, $username = null, $password = null) { 
             self::$base_path = MODX_CORE_PATH . 'components/logger/';
@@ -18,6 +19,9 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
             $start = microtime(true);  
             $result = parent::query($query);  
             $time = microtime(true) - $start;
+            if(DebugToolbar::$disableLogging){
+                return $result;
+            }
             DebugToolbar::$log[] = array('query' => $query, 'time' => round($time * 1000, 3));  
             return $result;  
         }  
@@ -45,8 +49,8 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
             $modx_totalTime = ($modx->getMicroTime() - $modx->startTime);
             $modx_queryTime = $modx->queryTime;
             $modx_phpTime = $modx_totalTime - $modx_queryTime;
-	          $modx_totalTime = sprintf("%2.4f s", $modx_totalTime);
-	          $modx_queryTime = sprintf("%2.4f s", $modx_queryTime);
+              $modx_totalTime = sprintf("%2.4f s", $modx_totalTime);
+              $modx_queryTime = sprintf("%2.4f s", $modx_queryTime);
             $modx_phpTime = sprintf("%2.4f s", $modx_phpTime);
             $modx_source = $modx->resourceGenerated ? "database" : "cache";
 
@@ -58,11 +62,11 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
             $timing_array['source'] = $modx_source;
             $timing_array['memory'] = memory_get_usage();
             $timing_array['memory_peak'] = memory_get_peak_usage();
-	          if (function_exists('getrusage')) {
-		          $cpu_data = getrusage();
+              if (function_exists('getrusage')) {
+                  $cpu_data = getrusage();
               $timing_array['cpu_user'] = $cpu_data['ru_utime.tv_sec'] + $cpu_data['ru_utime.tv_usec'] / 1000000;
               $timing_array['cpu_system'] = $cpu_data['ru_stime.tv_sec'] + $cpu_data['ru_stime.tv_usec'] / 1000000;
-	          }
+              }
 
             $ti = 0;
             foreach ($timing_array as $key => $value) {
@@ -83,10 +87,10 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
             $qi = 0;
             $totalTime = 0;
 
-		        $highlighter = Text_Highlighter::factory('SQL');
-		        $highlighter->setRenderer(new Text_Highlighter_Renderer_Html(array(
-			        'use_language' => true,
-		        )));
+                $highlighter = Text_Highlighter::factory('SQL');
+                $highlighter->setRenderer(new Text_Highlighter_Renderer_Html(array(
+                    'use_language' => true,
+                )));
 
             foreach(self::$log as $entry) {
                 $totalTime += $entry['time'];
@@ -112,10 +116,11 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
             $totalCount = 0;
             foreach(self::$petCount as $id => $item) {
                 $totalCount += $item['count'];
+                $content = htmlentities($item['content']);
                 $paProperties = array(
                     'id' => $id,
                     'idx' => $pi,
-                    'content' => htmlentities($item['content']),
+                    'content' => $highlighter->highlight($content),
                     'count' => $item['count']
                 );
                 $parser .= $modx->getChunk($parseritem_tpl, $paProperties);
@@ -232,6 +237,9 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
             $start = microtime(true);
             $result = $this->statement->execute();
             $time = microtime(true) - $start;
+            if(DebugToolbar::$disableLogging){
+                return $result;
+            }
             $sql = $this->toSQL($this->statement->queryString, $this->bindings);
             $queryCount = &DebugToolbar::$queryCount;
             if (isset($queryCount[md5($sql)])){
