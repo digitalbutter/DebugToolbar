@@ -5,5 +5,5 @@
  * @package debugtoolbar
  * @subpackage build
  */
-define('MODX_CORE_PATH', '/Users/judereid/Sites/debug/httpdocs/core/');
+define('MODX_CORE_PATH', '/path/to/core');
 define('MODX_CONFIG_KEY','config');
