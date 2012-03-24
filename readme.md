@@ -1,7 +1,7 @@
 # Debug Toolbar
 ## Installation
 Download the latest package from the [downloads page](https://github.com/digitalbutter/DebugToolbar/downloads/)  
-Make the following change in core/xpdo/xpdo.class.php, starting at line 327  
+Make the following change in core/xpdo/xpdo.class.php, starting at line 2952  
 Replace:
 
     try {
