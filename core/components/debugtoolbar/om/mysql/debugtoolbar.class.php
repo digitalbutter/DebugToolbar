@@ -70,10 +70,24 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
 
             $headers = '';
             $hi = 0;
-            foreach (getallheaders() as $key => $value) {
-                $headers .= $modx->getChunk($kv_tpl, array('idx' => $ti, 'key' => $key, 'value' => $value));
-                $hi++;
-            }
+	          if (!function_exists('getallheaders')) {
+			        foreach ($_SERVER as $key => $value) {
+				        if (substr($key, 0, 5) == 'HTTP_') {
+					        $headers .= $modx->getChunk($kv_tpl, array(
+						        'idx' => $hi,
+						        'key' => str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($key, 5))))),
+						        'value' => $value,
+					        ));
+                  $hi++;
+				        }
+			        }
+		        } else {
+			        foreach (getallheaders() as $key => $value) {
+				        $headers .= $modx->getChunk($kv_tpl, array('idx' => $hi, 'key' => $key, 'value' => $value));
+				        $hi++;
+			        }
+		        }
+
             $panels['headers'] = $modx->getChunk($headers_tpl, array('headers' => $headers));
 
             $queries = '';
