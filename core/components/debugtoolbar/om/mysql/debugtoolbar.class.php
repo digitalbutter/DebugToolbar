@@ -46,7 +46,7 @@ require_once (MODX_CORE_PATH . 'components/debugtoolbar/vendors/TextHighlighter/
             $parser_tpl = 'dbtParser';
             $parseritem_tpl = 'dbtParserItem';
 
-            $modx_totalTime = ($modx->getMicroTime() - $modx->startTime);
+            $modx_totalTime = (microtime(true) - $modx->startTime);
             $modx_queryTime = $modx->queryTime;
             $modx_phpTime = $modx_totalTime - $modx_queryTime;
               $modx_totalTime = sprintf("%2.4f s", $modx_totalTime);
