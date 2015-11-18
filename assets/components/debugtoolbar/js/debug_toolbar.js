@@ -11,7 +11,7 @@ window.moddt = (function(window, document, jQuery) {
 		init: function() {
 			$('#modDT').show();
 			var current = null;
-			$('#modDTPanelList li a').live('click', function() {
+			$('#modDTPanelList li a').on('click', function() {
 				if (!this.className) {
 					return false;
 				}
@@ -27,18 +27,18 @@ window.moddt = (function(window, document, jQuery) {
 				}
 				return false;
 			});
-			$('#modDT a.modDTClose').live('click', function() {
+			$('#modDT a.modDTClose').on('click', function() {
 				$(document).trigger('close.modDT');
 				$('#modDTToolbar li').removeClass('active');
 				return false;
 			});
-			$('#modDT a.remoteCall').live('click', function() {
+			$('#modDT a.remoteCall').on('click', function() {
 				$('#modDTWindow').load(this.href, function(response, status, xhr) {
 					if (status == "error") {
 						var message = '<div class="moddtDebugPanelTitle"><a class="moddtDebugClose moddtDebugBack" href="">Back</a><h3>'+xhr.status+': '+xhr.statusText+'</h3></div>';
 						$('#modDTWindow').html(message);
 					}
-					$('#modDTWindow a.modDTBack').live('click', function() {
+					$('#modDTWindow a.modDTBack').on('click', function() {
 						$(this).parent().parent().hide();
 						return false;
 					});
@@ -46,17 +46,17 @@ window.moddt = (function(window, document, jQuery) {
 				$('#modDTWindow').show();
 				return false;
 			});
-			$('#modDTTemplatePanel a.moddtTemplateShowContext').live('click', function() {
+			$('#modDTTemplatePanel a.moddtTemplateShowContext').on('click', function() {
 				moddt.toggle_arrow($(this).children('.toggleArrow'));
 				moddt.toggle_content($(this).parent().next());
 				return false;
 			});
-			$('#modDT a.modDTToggle').live('click', function(e) {
+			$('#modDT a.modDTToggle').on('click', function(e) {
 				e.preventDefault();
 				$(this).parent().find('.modDTCollapsed').toggle();
 				$(this).parent().find('.modDTUncollapsed').toggle();
 			});
-			$('#modDT a.moddtToggleSwitch').live('click', function(e) {
+			$('#modDT a.moddtToggleSwitch').on('click', function(e) {
 				e.preventDefault();
 				var btn = $(this);
 				var id = btn.attr('data-toggle-id');
@@ -92,7 +92,7 @@ window.moddt = (function(window, document, jQuery) {
 				var depth = parseInt(row.attr('depth'), 10) + 1;
 				return subcalls.filter('[depth='+depth+']');
 			}
-			$('.modDTProfileRow .modDTProfileToggle').live('click', function(){
+			$('.modDTProfileRow .modDTProfileToggle').on('click', function(){
 				var row = $(this).closest('.modDTProfileRow');
 				var subcalls = getSubcalls(row);
 				if (subcalls.css('display') == 'none') {
